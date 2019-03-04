@@ -50,19 +50,14 @@ size_t  strcspn_(const char *cs, const char *ct){
 
 
 char *strpbrk_(const char *cs, const char *ct){
-  char *pstart = cs;
   while(*ct != '\0'){
-    while(*cs != *ct && *cs != '\0'){
-      ++cs;
-    }
-    if(*cs == *ct){
-      return cs;
+    if(strchr(cs,*ct) != NULL){
+      return strchr(cs,*ct);
     }else{
       ++ct;
-      cs = pstart;
     }
   }
-  return cs;
+  return NULL;
 }
 
 
@@ -105,11 +100,8 @@ int main(){
   char buf3[100] = "superb";
   char buf4[100] = "upsfedex";
   char buf5[100] = "Mister Dursley turned and said, what!?";
-  char buf6[100] = "!?,.:;";
+  char buf6[100] = ",.:;?!";
 
   test_strchr_strstr(buf1,buf2, char1);
   test_strspn(buf3,buf4);
   test_strpbrk(buf5,buf6);
-
-  return 0;
-}
